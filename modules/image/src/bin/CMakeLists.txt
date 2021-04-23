@@ -6,6 +6,7 @@
 set(O3D3XX_IMAGE_EXE_TARGETS)
 
 find_library(LIB_boost_program_options NAMES boost_program_options)
+find_library(LIB_boost_system NAMES boost_system)
 
 #-----------------------------------------------
 # o3d3xx-viewer
@@ -14,6 +15,9 @@ if(BUILD_EXE_VIEWER)
   add_executable(o3d3xx-viewer o3d3xx-viewer.cpp)
 
   if(BUILD_SHARED_LIBS)
+
+    target_compile_definitions(o3d3xx-viewer PUBLIC ${PCL_DEFINITIONS})
+    target_compile_options(o3d3xx-viewer PUBLIC ${PCL_COMPILE_OPTIONS})
     target_link_libraries(o3d3xx-viewer
       o3d3xx_image_shared
       ${O3D3XX_CAMERA_LIBRARIES}
@@ -21,6 +25,7 @@ if(BUILD_EXE_VIEWER)
       ${PCL_VISUALIZATION_LIBRARIES}
       ${OpenCV_LIBRARIES}
       ${LIB_boost_program_options}
+      ${LIB_boost_system}
       )
   else()
     target_link_libraries(o3d3xx-viewer
@@ -30,6 +35,7 @@ if(BUILD_EXE_VIEWER)
       ${PCL_VISUALIZATION_LIBRARIES}
       ${OpenCV_LIBRARIES}
       ${LIB_boost_program_options}
+      ${LIB_boost_system}
       )
   endif(BUILD_SHARED_LIBS)
 
