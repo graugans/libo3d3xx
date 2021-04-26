@@ -160,3 +160,20 @@ target_link_libraries(ex-pcic_dos_attack
                       ${LIB_boost_system}
                       ${CMAKE_THREAD_LIBS_INIT}
                       )
+
+add_executable(issue-142 issue-142.cpp)
+target_link_libraries(issue-142
+                      ${O3D3XX_CAMERA_LIBRARIES}
+                      ${O3D3XX_FRAMEGRABBER_LIBRARIES}
+                      ${O3D3XX_IMAGE_LIBRARIES}
+                      ${O3D3XX_PCICCLIENT_LIBRARIES}
+                      ${OpenCV_LIBRARIES}
+                      ${LIB_boost_system}
+                      ${CMAKE_THREAD_LIBS_INIT}
+                      )
+# Deal with the PCL library
+target_compile_definitions(issue-142 PUBLIC ${PCL_DEFINITIONS})
+target_compile_options(issue-142 PUBLIC ${PCL_COMPILE_OPTIONS})
+target_link_libraries(issue-142 ${PCL_LIBRARIES})
+target_compile_definitions(issue-142 PUBLIC ${PCL_DEFINITIONS})
+target_compile_options(issue-142 PUBLIC ${PCL_COMPILE_OPTIONS})
