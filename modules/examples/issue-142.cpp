@@ -45,10 +45,10 @@ int getSavedPCD_(int id, pcl::PointCloud<pcl::PointXYZI>::Ptr& cloud_xyzi)
     return 1;
 }
 
-void testCapture(string camIP)
+void testCapture()
 {
 
-    o3d3xx::Camera::Ptr cam = std::make_shared<o3d3xx::Camera>(camIP);
+    o3d3xx::Camera::Ptr cam = std::make_shared<o3d3xx::Camera>();
     o3d3xx::ImageBuffer::Ptr img = std::make_shared<o3d3xx::ImageBuffer>();
     o3d3xx::FrameGrabber::Ptr fg = std::make_shared<o3d3xx::FrameGrabber>(cam, o3d3xx::IMG_AMP|o3d3xx::IMG_RDIS|o3d3xx::IMG_CART);
     o3d3xx::Logging::Init();
@@ -63,6 +63,6 @@ void testCapture(string camIP)
 
 int main(int argc, char** argv)
 {
-    testCapture("192.168.0.25");
+    testCapture();
     return 1;
 }
